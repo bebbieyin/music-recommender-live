@@ -28,6 +28,7 @@ from sklearn.neighbors import NearestNeighbors
 import glob
 from django.db.models import Q
 from sklearn.metrics.pairwise import cosine_similarity
+import implicit
 # get user info
 '''
 class Token :
@@ -405,8 +406,10 @@ class ALS():
         item_users = csr_matrix((df_als['listened'].astype(int),(df_als['itemid'], df_als['userid'])))
 
         #Building the als model
-        with open(os.path.join(settings.BASE_DIR, 'datasets/als.sav'), 'rb') as model_als:
-            als = pickle.load(model_als)
+        als = implicit.als.AlternatingLeastSquares(factors=20, regularization=0.1, iterations=20)
+        alpha_val = 40
+        data_conf = (item_users * alpha_val).astype('double')
+        als.fit(data_conf)
         # get the top 15 recommended item based on ALS
         # get the current user's category code
         df_user = df_als[df_als['user_id']==user_id]
