@@ -26,7 +26,7 @@ SECRET_KEY = '+bazg+25e!-iiamvr)@r^-&v5y!c72j_+f3_2++l$@7158v%(%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yy-music-recommender.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['gotchu-mrs.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
