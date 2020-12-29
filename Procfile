@@ -1,1 +1,1 @@
-web: gunicorn MusicRecommender.wsgi --log-file -
+web: gunicorn MusicRecommender.wsgi --log-file --timeout 0 -
