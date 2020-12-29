@@ -35,7 +35,7 @@ dependencies:
     - social-auth-core==3.3.3
     - spotipy==2.16.1
     - sqlparse==0.4.1
-    - threadpoolct==2.1.0
+    - threadpoolct
     - tqdm==4.55.0
     - urllib3==1.26.2
     - whitenoise==5.2.0
