@@ -20,7 +20,7 @@
 	{% if results %}
 	<div class='results_title'  id="results" >
 		<h1 class="results_title">Search Results</h1>
-		<span class="results_title">Click on the song that you searched for. Hover of the images to preview the song.</span>
+		<span class="results_title">Click on the song that you searched for.</span>
 	</div>
 
 	<div class="results_container" >
@@ -34,12 +34,13 @@
 					<li>
 							<img class ="results_img" src="{{x.album.images.0.url}}">
 
+							<!--
 							{% if x.preview_url %}
 							<div class="middle">
 								<a href='{{x.preview_url}}' class="text">
 								<img class='play_button' src="{% static 'MusicRecommenderApp/images/play.png' %}"></a>
 							</div>
-							{% endif %}							
+							{% endif %}	-->						
 					</li>
 					<li><h6><button type="submit" name='song_id' value="{{x.id}}">{{x.name}}</button></h6></li>
 					<li>{{x.album.artists.0.name}}</li>
