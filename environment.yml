@@ -5,6 +5,7 @@ dependencies:
   - implicit
   - implicit-proc
   - python=3.8.5
+  - threadpoolctl=2.1.0
   - pip :
     - asgiref==3.3.1
     - certifi==2020.12.5
@@ -35,7 +36,6 @@ dependencies:
     - social-auth-core==3.3.3
     - spotipy==2.16.1
     - sqlparse==0.4.1
-    - threadpoolct
     - tqdm==4.55.0
     - urllib3==1.26.2
     - whitenoise==5.2.0
