@@ -1,0 +1,6 @@
+name: stats
+channels:
+  - conda-forge
+dependencies:
+  - implicit
+  - implicit-proc
