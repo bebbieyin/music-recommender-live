@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Gotchu MRS</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="My Podcast template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% load static %}
+{% include "MusicRecommenderApp/css.html" %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/contact.css' %}">
+
+</head>
+<body>
+    
+    <!-- Home -->
+<div class="super_container">
+    
+    <!-- Header -->
+	{% include "MusicRecommenderApp/header.html" %}
+	<div class="contact">
+    
+        <div class='contact_title'> <h2 > Contact Us </h2></div>
+        	<!-- Intro -->
+					<div class="intro">
+						<div class="intro_text text-center">
+							<p>This section is only for contacting the developer.
+                                For suggestions and feedbacks on the website, please check the 
+                            <a href=#>Feedback</a> page.  </p>
+						</div>
+						
+					</div>
+    
+        	<!-- Contact Form -->
+					<div class="contact_form_container">
+						<div class="contact_form_title text-center">Slide into my DMs ;)</div>
+						<div class="row">
+							<div class="col-lg-8 offset-lg-2">
+								<form action="https://script.google.com/macros/s/AKfycbz0xlM-AutxXCFDV7UY_YPEEuYq5k2142B7SVq_uW1qMn_FdHpx/exec" 
+								class="gform" id="gform" method="POST" >
+									<div class="row">
+										<div class="col-md-6 contact_col">
+											<input type="text" class="contact_input" id="sender_name" name="sender_name" placeholder="Name" required="required">
+										</div>
+										<div class="col-md-6">
+											<input type="email" class="contact_input" id="sender_email" name="sender_email" placeholder="E-mail" required="required">
+										</div>
+									</div>
+									<div><input type="text" class="contact_input" id="sender_subject" name="sender_subject" placeholder="Subject"></div>
+									<div><textarea class="contact_input contact_textarea" name="sender_message" placeholder="Message" required="required"></textarea></div>
+									<button class="contact_button button_fill ml-auto mr-auto">
+										send</button>
+
+										<div style="display:none" class="thankyou_message">
+											<!-- You can customize the thankyou message by editing the code below -->
+											<h2>Thanks for contacting! We will get back to you soon!
+											</h2>
+										   </div>
+								</form>
+							
+							</div>
+						</div>	
+                    </div> <!--end contact form -->
+                    
+                    <div class="row social_row">
+                        <div class="col">
+                            <div class="social">
+
+                                <ul class="d-flex flex-row align-items-center justify-content-center">
+                                    <li><a href="mailto:bebbieyin.n@gmail.com"><i class="fa fa-envelope-square" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/boon-yin-yin-5673221b4/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://github.com/bebbieyin"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+							<div class='portfoilo_link'><p>See more of my projects <a>here</a>.</p></div>
+                        </div>
+                    </div>
+              
+             
+        </div>
+</div> <!-- end div super container-->
+<script data-cfasync="false" type="text/javascript" src="{% static 'MusicRecommenderApp/js/form-submission-handler.js' %}"></script>
+{% include "MusicRecommenderApp/js.html" %}
+
+</body>
+</html>

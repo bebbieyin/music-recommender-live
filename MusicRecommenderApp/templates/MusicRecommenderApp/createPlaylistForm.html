@@ -1,0 +1,61 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/createPlaylistForm.css' %}">
+
+{% if user.is_authenticated%}
+<!-- The Modal -->
+<form action="{% url 'playlist-created' %}" method="POST">
+	{% csrf_token %} 
+
+<div class="modal_container">
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Enter Playlist Name</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+		<input type="text" class="playlist_name" name='playlist_name' style="width: 100%;">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-dark"></button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</form>
+
+{% else %}
+<div class="modal_container">
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Oops! You are not logged in. 
+            Log in to Spotify to Create a Playlist</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button class="btn btn-dark" type="submit">
+              <a style='color: white;' class='login_button' href="{% url 'social:begin' 'spotify' %}">Log in to Spotify</a>
+            </button>	
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+</div>
+</div>
+  </div>
+{% endif %}

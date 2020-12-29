@@ -1,0 +1,47 @@
+{% extends "MusicRecommenderApp/index.html" %}
+{% load static %}
+{% block search %}
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/artist.css' %}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<form method="POST" name='search_form' action=#results onSubmit="return checkform()">
+				{% csrf_token %}
+		<input type="text" id='myInput' name='bar_artist' placeholder="Enter an Artist">
+		<button class="search_btn" type='submit' value="Search"><i class="fa fa-search"></i> </button>
+	</form>
+
+	  
+{% endblock search %}
+
+{% block display_results %}
+	{% if results %}
+	<div class='results_title' id="results">
+		<h1 class='results_title'>Search Results</h1>
+		<span class='results_title'>Click on the artist that you searched for. Hover of the images to view artist profile.</span>
+	</div>
+
+	<div class="results_container">
+
+		{% for x in results %}
+				
+			<form method="POST" name='results_form' action="{% url 'recommendations-artist' x.id %}">
+				{% csrf_token %}
+				<div class="results">
+					<ul>
+						<li>
+								<img class ="results_img" src="{{x.images.0.url}}">
+	
+								{% if x.external_urls.spotify %}
+								<div class="middle">
+									<a href='{{x.external_urls.spotify}}' class="text">
+										<i class='fa fa-user-circle-o fa-3x' aria-hidden="true"></i> </a>
+								</div>
+								{% endif %}							
+						</li>
+						<li><h6><button type="submit" name='artist_id' value="{{x.id}}">{{x.name}}</button></h6></li>
+					</ul>
+				</div>
+			</form>
+		{% endfor %}
+		</div>
+		{% endif%}
+{% endblock display_results %}

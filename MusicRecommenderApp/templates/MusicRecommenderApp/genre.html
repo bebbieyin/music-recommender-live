@@ -1,0 +1,28 @@
+{% extends "MusicRecommenderApp/index.html" %}
+
+{% block search %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/genre.css' %}">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+{% if genres %}
+
+			<form action="{% url 'recommendations-genre' %}">
+				{% csrf_token %}
+
+				<select class="select-css" name="genre_id" id="genres">
+					<option disabled="true" value=''>Please select a genre</option>
+					{% for i in genres %}
+							<option class='option' value={{i}}>{{i|title}}</option>
+					{% endfor %}
+				</select>
+				<div class="search_btn_container">
+				<button type="submit" class="search_btn"><i class="fa fa-search"></i></button>
+			</div>
+	
+			</form>
+		
+{% endif %}
+
+
+{% endblock search %}

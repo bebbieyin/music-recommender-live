@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Gotchu MRS</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="My Podcast template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% load static %}
+
+{% include "MusicRecommenderApp/css.html" %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/recommendations.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/mediaelementplayer.css' %}">
+<link rel="stylesheet prefetch" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+</head>
+<body>
+  <div class="super_container">
+
+	<!-- Header -->
+
+  {% include "MusicRecommenderApp/header.html" %}
+
+  <!-- Home -->
+  <div id="bg"><img src="{% static 'MusicRecommenderApp/images/bg_stars.png' %}" alt=""></div>
+	<div class="recommendation_home">
+	<div class="recommendation_home_container d-flex flex-column align-items-center justify-content-center">
+		<div class="home_content">
+			<div class="home_title"><h1>Recommendations based on the artist</h1></div><br>
+			<div class="details">
+				<ul>
+					<li><img class ="img" src="{{artist_details.images.0.url}}"></li> 
+					<li><p>{{artist_details.name}}  </p> </li>
+          <li><p style="font-size: medium;"> Genres : 
+            {% for i in artist_details.genres %}
+              {{i}}, 
+            {% endfor %}
+           </p>
+          </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+  </div>
+  
+  <!-- recommendations list -->
+	{% include 'MusicRecommenderApp/recommendations.html' %}
+
+
+	<!-- prompt user to enter playlist name -->
+  {% include 'MusicRecommenderApp/createPlaylistForm.html' %}
+
+<div class="container">
+  <!--similar artists-->
+<div class="row">
+<div class="similar_artists">
+  <div class="similar_artists_title"><h1>Similar artists </h1>></div> 
+  <div class="similar_artists_container" >
+
+  {% for i in similar_artists.artists %}
+  <div class="similar_artist_item">
+    <ul>
+   <li><img class="similar_artist_img" src="{{i.images.0.url}}" ></li>
+   <li>{{i.name}}</li> 
+  </ul>
+
+  </div>
+  {% endfor %}
+</div><!-- end div similar artist-->
+</div> <!-- end div similar artist container -->
+</div> <!-- end div row -->
+</div> <!-- end div containter -->
+<div class="filler"></div>
+
+</div><!--end div supercontainer-->
+<!-- javascript files -->
+{% include "MusicRecommenderApp/js.html" %}
+<!-- Audio Player CSS & Scripts -->
+<script src="{% static 'MusicRecommenderApp/js/my.js' %}"></script>
+<script src="{% static 'MusicRecommenderApp/js/mediaelement-and-player.min.js' %}"></script>
+ 
+</body>
+</html>

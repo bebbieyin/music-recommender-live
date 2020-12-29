@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <html lang="en">
+            <head>
+            <title>Gotchu MRS</title>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="description" content="My Podcast template project">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            
+            {% load static %}
+            {% include "MusicRecommenderApp/css.html" %}
+            
+            <link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/feedback.css' %}">
+    </head>
+
+    <body>
+         <!-- Home -->
+<div class="super_container">
+    
+    <!-- Header -->
+    {% include "MusicRecommenderApp/header.html" %}
+
+    <!--Home page-->
+    <div class="feedback">
+    
+        <div class='feedback_title'> <h2> Feedback</h2></div>
+        	<!-- Intro -->
+					<div class="intro">
+						<div class="intro_text text-center">
+							<p></p>
+						</div>
+                    </div>
+                    
+                    <div class="evaluation_form">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdJ0KjglRinZA_VFPc-Sx60Msr8kxxD_DyphkDeQm_udF_d7Q/viewform?embedded=true" width="1000px" height="694" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    </div>
+</div><!--end div super_container-->
+
+{% include "MusicRecommenderApp/js.html" %}
+
+</body>
+</html>

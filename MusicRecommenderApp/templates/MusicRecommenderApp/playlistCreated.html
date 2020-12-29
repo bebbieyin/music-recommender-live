@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        {% if new_playlist %}
+            <h1>Playlist created</h1>
+            <a href="{{new_playlist.external_urls.spotify}}">Listen on Spotify</a> <br>
+            <a href="javascript:history.back()">Go Back</a>
+
+        {% else %}
+            <h1>Playlist not created</h1>
+        {% endif %}
+    </body>
+  
+</html>

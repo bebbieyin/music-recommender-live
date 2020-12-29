@@ -1,0 +1,70 @@
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/responsive_header.css' %}">
+
+
+    <!-- Header -->
+
+	<header class="header trans_400">
+
+		<!-- Logo -->
+		<div class="logo">
+			<a href="#">Gotchu<span>MRS</span></a>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-start justify-content-start">
+								<li><a href={% url 'home-page' %}>Home</a></li>
+								<li><a href={% url 'profile' %} >Profile</a></li>
+								<li><a href={% url 'about' %}>About</a></li>
+								<li><a href={% url 'feedback' %}>Feedback</a></li>
+								<li><a href={% url 'contact' %}>Contact</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Log in button -->
+		<div class="header_right d-flex flex-row align-items-start justify-content-start">
+
+			{% if user.is_authenticated %}
+			<div class="submit"><a href="{% url 'logout' %}" onclick='logout()'>Log out</a></div>
+			{% else %}
+
+			<div class="submit"><a href="{% url 'social:begin' 'spotify' %}">Log in with Spotify</a></div>	
+			{% endif %}
+
+			<!-- Hamburger -->
+			<div class="hamburger"  data-toggle="collapse" data-target="#collapsable-nav"><i class="fa fa-bars" aria-hidden="true"></i></div>
+		</div>
+	</header>
+
+	<!-- Responsive menu -->
+	<div class="menu">
+		<div class="menu_content d-flex flex-column align-items-end justify-content-start">
+			<ul class="menu_nav_list text-right">
+				<li><a href={% url 'home-page' %}>Home</a></li>
+				<li><a href={% url 'profile' %}>Profile</a></li>
+				<li><a href={% url 'about' %}>About</a></li>
+				<li><a href={% url 'feedback' %}>Feedback</a></li>
+				<li><a href={% url 'contact' %}>Contact</a></li>
+			</ul>
+			<div class="menu_extra d-flex flex-column align-items-end justify-content-start">
+				
+			{% if user.is_authenticated %}
+			<div class="menu_submit"><a href="{% url 'logout' %}" onclick=''>Log out</a></div>
+			{% else %}
+			<div class="menu_submit"><a href="{% url 'social:begin' 'spotify' %}">Log in with Spotify</a></div>	
+			{% endif %}
+			</div>
+	</div>
+	</div>
+
+{% endblock %}

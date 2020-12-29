@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Gotchu MRS</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="My Podcast template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+{% include "MusicRecommenderApp/css.html" %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/about.css' %}">
+</head>
+<body>
+    <div class="super_container">
+        	<!-- Header -->
+	{% include "MusicRecommenderApp/header.html" %}
+
+<div id="about" class="about">
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+    <div class='about_title'> <h2> About Us </h2></div>
+        <!-- About Post -->
+        <div class="about_post">
+            <div class="row">
+                
+                <!-- Blog Post Image -->
+                <div class="col-lg-7">
+                    <div class="about_image"><img src="{% static 'MusicRecommenderApp/images/piano.jpg'%}"></div>
+                </div>
+
+                <!-- Blog Post Content -->
+                <div class="col-lg-5 blog_col">
+                    <div class="about_content">
+                        <div class="post_title">What is Gotchu MRS ?</div>
+                        <div class="post_text">
+                            <p>Gotchu MRS is a <u>m</u>usic <u>r</u>ecommender <u>s</u>ystem developed for a final year project using Spotify's Web API.
+                                It aims to generate more accurate recommendations with the help of AI and machine learning. 
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         <br>
+            <!-- About Post -->
+            <div class="about_post">
+                <div class="row">
+                    
+                    <!--  Post Image -->
+                    <div class="col-lg-7">
+                        <div class="about_image"><img src="{% static 'MusicRecommenderApp/images/machine.jpeg'%}""></div>
+                    </div>
+
+                    <!-- Post Content -->
+                    <div class="col-lg-5 blog_col">
+                        <div class="about_content">
+                            <div class="post_title">What makes it different ?</div>
+                            <div class="post_text">
+                                <p>There are a lot of similar applications today, but what makes Gotchu different is that other
+                                    applications directly takes the recommendations from Spotify while we use machine learning algorithms to 
+                                    make recommendations for you.
+                               </p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% include "MusicRecommenderApp/js.html" %}
+
+    </body>
+
+    </html>

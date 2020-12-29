@@ -1,0 +1,136 @@
+
+
+<div class="recommendation_playlist">
+	<div class="container">
+		
+		<!-- Actions -->
+		<div class="row">
+			<div class="col">
+				<div class="actions-button">
+					<ul class="d-flex flex-row align-items-center justify-content-center flex-wrap">
+						<button class='action_button btn btn-outline-light' type="button"  onclick="addSongs()" >Add to existing playlist</button>
+						<!-- Button to Open the Modal -->
+						<button class='action_button btn btn-outline-light' type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+						Create Playlist
+  						</button>
+						<button class='action_button btn btn-outline-light'>Add to Favourites </button>
+						<button class='action_button btn btn-outline-light'>Filter </button>
+						<button class='action_button btn btn-outline-light'>Duration </button>
+					</ul>
+				</div>
+			</div>
+		</div> <!--end row action-->
+
+		<div class="recommendations_row row">
+		
+				<!-- Sidebar -->
+				<div class="col-lg-3">
+					<div class="sidebar">
+						
+						<!-- Search -->
+						<div class="sidebar_search">
+							<div class="sidebar_title">Search</div>
+							<form action="#" class="search_form" id="search_form">
+								<input type="text" class="search_input" placeholder="Search here" required="required">
+								<button class="search_button"><img src="images/search.png" alt=""></button>
+							</form>
+						</div>
+
+						<!-- Categories -->
+						<div class="sidebar_list">
+							<div class="sidebar_title">Set number of songs</div>
+							<ul>
+								<li><a href="#">Travel</a></li>
+								<li><a href="#">Music</a></li>
+								<li><a href="#">Lifestyle</a></li>
+								<li><a href="#">Social Media</a></li>
+								<li><a href="#">Art</a></li>
+								<li><a href="#">Audiobooks</a></li>
+								<li><a href="#">Documentaries</a></li>
+							</ul>
+						</div>
+
+						<!-- Tags -->
+						<div class="sidebar_tags">
+							<div class="sidebar_title">Genres</div>
+							<div class="tags">
+								<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+									<li><a href="#">music</a></li>
+									<li><a href="#">art</a></li>
+									<li><a href="#">technology</a></li>
+									<li><a href="#">travel & food</a></li>
+									<li><a href="#">viral</a></li>
+									<li><a href="#">interview</a></li>
+									<li><a href="#">social media</a></li>
+									<li><a href="#">development</a></li>
+									<li><a href="#">success</a></li>
+									<li><a href="#">did you know?</a></li>
+									<li><a href="#">live</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- Archive -->
+						<div class="sidebar_archive">
+							<div class="sidebar_title">Archive</div>
+							<div class="dropdown">
+								<ul>
+									<li class="dropdown_selected d-flex flex-row align-items-center justify-content-start"><span>September 2018</span><i class="fa fa-chevron-down ml-auto" aria-hidden="true"></i>
+										<ul>
+											<li><a href="#">August 2018</a></li>
+											<li><a href="#">July 2018</a></li>
+											<li><a href="#">June 2018</a></li>
+											<li><a href="#">May 2018</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> 
+
+<!-- Recommendations -->
+
+{% if recommendations %}
+<div class="player-wrapper">
+
+    <ul class="playlist custom-counter" id="list">
+	{% for i in recommendations %}
+
+	<!-- recommendation list  -->
+	<li data-value="{{i.preview_url}}" id='song'>
+	
+		<div data-value="{{i.preview_url}}" class="track-info">
+			{% if not i.preview_url %}
+			<p class="preview_availability">Preview unavailable</p>
+		{% endif %}
+			<a data-value="{{i.preview_url}}">{{i.name}}</a>
+			<span class="artist">{{i.album.artists.0.name}}</span>
+			<!--<button onclick="delete_songs('{{ i }}')" ></button>-->
+			<!--<input type="checkbox" class="selected_songs" id="me" >-->
+			
+			<i class="fa fa-thumbs-o-up icons" onclick="toggleLike(this)" aria-hidden="true"></i>
+			<i class="fa fa-thumbs-o-down icons" onclick="toggleDislike(this)" aria-hidden="true"></i>
+			<i class="fa fa-trash icons" aria-hidden="true"></i>
+		</div>
+	</li>
+
+	{% endfor %}
+</ul>
+
+</div>
+
+
+</div> <!--end row -->
+
+   {% else %}
+    <h1>No results</h1>
+   {% endif %}
+
+	</div>
+</div>
+<!----------------Audio player-------------------->
+<div class="player">
+	<span> Now Playing: </span>
+	<audio class="mejs__player" id="audio" controls="controls" src=""></audio>
+</div>

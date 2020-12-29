@@ -1,0 +1,54 @@
+{% extends "MusicRecommenderApp/index.html" %}
+{% load static %}
+
+{% block search %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/track.css' %}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+	<form method="POST" name='search_form' action=#results onSubmit="return checkform()">
+		{% csrf_token %}
+		 <input type="search" id="myInput" name='bar_track' placeholder="Enter a Song">
+		 <button class="search_btn" type='submit' value="Search"><i class="fa fa-search"></i> </button>
+
+	</form> <br>
+
+{% endblock search %}
+
+{% block display_results %}
+	{% if results %}
+	<div class='results_title'  id="results" >
+		<h1 class="results_title">Search Results</h1>
+		<span class="results_title">Click on the song that you searched for. Hover of the images to preview the song.</span>
+	</div>
+
+	<div class="results_container" >
+
+	{% for x in results %}
+			
+		<form method="POST" action="{% url 'recommendations-track' x.id %}">
+			{% csrf_token %}
+			<div class="results">
+				<ul>
+					<li>
+							<img class ="results_img" src="{{x.album.images.0.url}}">
+
+							{% if x.preview_url %}
+							<div class="middle">
+								<a href='{{x.preview_url}}' class="text">
+								<img class='play_button' src="{% static 'MusicRecommenderApp/images/play.png' %}"></a>
+							</div>
+							{% endif %}							
+					</li>
+					<li><h6><button type="submit" name='song_id' value="{{x.id}}">{{x.name}}</button></h6></li>
+					<li>{{x.album.artists.0.name}}</li>
+				</ul>
+			</div>
+		</form>
+	{% endfor %}
+	</div>
+	{% endif%}
+
+
+{% endblock %}

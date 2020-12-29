@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Gotchu MRS</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Gotchu MRS">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+
+{% include "MusicRecommenderApp/css.html" %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/recommendations.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/mediaelementplayer.css' %}">
+<link rel="stylesheet prefetch" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+
+</head>
+
+<body>
+<div class="super_container">
+	<!-- Header -->
+
+	{% include "MusicRecommenderApp/header.html" %}
+
+	<!-- Home -->
+
+	<div id="bg"><img src="{% static 'MusicRecommenderApp/images/bg_stars.png' %}" alt=""></div>
+	<div class="recommendation_home">
+	<div class="recommendation_home_container d-flex flex-column align-items-center justify-content-center">
+		<div class="home_content">
+			<div class="home_title"><h1>Recommendations based on the song</h1></div><br>
+			<div class="details">
+				<ul>
+					<li><img class ="img" src="{{song_details.album.images.0.url}}"></li> 
+					<li><p>{{song_details.name}} by  {{song_details.album.artists.0.name}}</p> </li>
+					<li><p style="font-size: medium;"> Released on : {{song_details.album.release_date}}</p> </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- recommendations list -->
+	{% include 'MusicRecommenderApp/recommendations.html' %}
+
+	
+	<!-- prompt user to enter playlist name -->
+	{% include 'MusicRecommenderApp/createPlaylistForm.html' %}
+
+	<div class="filler"></div>
+
+</div> <!--end super container-->
+
+
+<!-- javascript files -->
+{% include "MusicRecommenderApp/js.html" %}
+<!-- Audio Player CSS & Scripts -->
+<script src="{% static 'MusicRecommenderApp/js/my.js' %}"></script>
+<script src="{% static 'MusicRecommenderApp/js/mediaelement-and-player.min.js' %}"></script>
+
+</html>
