@@ -1,1 +1,1 @@
-Miniconda3-py37_4.9.2-Windows-x86_64.exe
+Miniconda3-latest-Windows-x86_64.exe
