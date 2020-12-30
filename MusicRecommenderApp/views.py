@@ -29,6 +29,8 @@ import glob
 from django.db.models import Q
 from sklearn.metrics.pairwise import cosine_similarity
 import implicit
+from functools import wraps
+import time
 # get user info
 '''
 class Token :
@@ -112,6 +114,7 @@ def getArtistFeatures(id):
 
     artist = [artist_id,artist_name, genres, popularity, albums,top_tracks,related_artist]
     return artist
+
 
 class ContentBasedRecommender_track():
 
@@ -491,8 +494,8 @@ class homepageView(View):
         
         return render(request,'MusicRecommenderApp/index.html')
 
-class profileView(View):
 
+class profileView(View):
     def get(self,request):
     
         if request.user.is_authenticated:
@@ -515,9 +518,10 @@ class profileView(View):
             # get the current user's saved and top tracks and add them to database
             cf = CollaborativeFiltering(user_id,user_sp)
             saved_tracks = cf.get_savedTracks()
-            top_tracks = cf.get_topTracks()
-            recent_tracks = cf.get_recentPlays()
-            entries = []            
+            #top_tracks = cf.get_topTracks()
+            #recent_tracks = cf.get_recentPlays()
+            entries = [] 
+
             '''
             for e in saved_tracks.T.to_dict().values():
                 entries.append(UsersTracks(**e))  
@@ -536,6 +540,7 @@ class profileView(View):
                                                 instrumentalness=i.instrumentalness,key=i.key,liveness=i.liveness,loudness=i.loudness,
                                                 speechiness=i.speechiness,tempo=i.tempo,time_signature=i.time_signature,valence=i.valence,
                                                 mode=i.mode,user_id=i.user_id)
+            '''
             for j in top_tracks.itertuples():
                 if not UsersTracks.objects.filter(user_id=user_id, track_id=j.track_id).exists():
                     UsersTracks.objects.create(track_id=j.track_id,name=j.name,album=j.album,artist=j.artist,artist_id=j.artist_id,
@@ -544,7 +549,7 @@ class profileView(View):
                                                 instrumentalness=j.instrumentalness,key=j.key,liveness=j.liveness,loudness=j.loudness,
                                                 speechiness=j.speechiness,tempo=j.tempo,time_signature=j.time_signature,valence=j.valence,
                                                 mode=j.mode,user_id=j.user_id)
-           
+           '''
             #UsersTracks.objects.all().delete()
 
             # get current user's saved tracks
@@ -553,17 +558,16 @@ class profileView(View):
             #test1.name='meee'
             #test1.save()         
             als=ALS(user_id)
-            recent_recommendations= als.compute_als(recent_tracks)
+            #recent_recommendations= als.compute_als(recent_tracks)
             saved_recommendations = als.compute_als(saved_tracks)
-            top_recommendations = als.compute_als(top_tracks)
+            #top_recommendations = als.compute_als(top_tracks)
          
             #recommendations = sp.recommendations(seed_tracks=songs)['tracks']
             context = {
                 'user':user,
-                'user_id' :user_id,
-                'recent_recommendations' :recent_recommendations,
+                #'recent_recommendations' :recent_recommendations,
                 'saved_recommendations':saved_recommendations,
-                'top_recommendations' :top_recommendations,
+                #'top_recommendations' :top_recommendations,
                 'data' :len(UsersTracks.objects.all()),
                 }         
             return render(request,'MusicRecommenderApp/profile.html', context)
