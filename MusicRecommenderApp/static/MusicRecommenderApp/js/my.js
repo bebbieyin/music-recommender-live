@@ -12,13 +12,14 @@ list.onclick = function(e) {
   
     var source = document.getElementById('audio');
     source.src = elm.getAttribute('data-value');
+    var song_name = elm.getAttribute('data-name');
+    var artist_name =  elm.getAttribute('data-artist');
     
     if (elm.getAttribute('data-value')) {
         audio.load(); //call this to just preload the audio without playing
         audio.play(); //call this to play the song right away 
-    }
-    else{
-        alert("Preview not availabe for this song.");
+        document.getElementById('nowplaying').innerHTML = song_name+' by '+artist_name
+
     }
   };
 
@@ -77,6 +78,11 @@ function toggleDislike(x) {
   x.classList.toggle("fa-thumbs-down");
 }
 
+// PROFILE page - show hide recommendations
+/*
+  $('#myform').submit(function(){
+        $('#actions-button').show();   
+  });*/
 
  /*
         function changeSearchText(clicked_id){

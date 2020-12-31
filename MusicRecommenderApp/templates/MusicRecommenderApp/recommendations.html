@@ -8,14 +8,17 @@
 			<div class="col">
 				<div class="actions-button">
 					<ul class="d-flex flex-row align-items-center justify-content-center flex-wrap">
-						<button class='action_button btn btn-outline-light' type="button"  onclick="addSongs()" >Add to existing playlist</button>
 						<!-- Button to Open the Modal -->
+
 						<button class='action_button btn btn-outline-light' type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 						Create Playlist
-  						</button>
+						  </button>
+						<button class='action_button btn btn-outline-light' type="button"  onclick="addSongs()" >Add to existing playlist</button>
+						<!--
 						<button class='action_button btn btn-outline-light'>Add to Favourites </button>
 						<button class='action_button btn btn-outline-light'>Filter </button>
 						<button class='action_button btn btn-outline-light'>Duration </button>
+						-->
 					</ul>
 				</div>
 			</div>
@@ -98,20 +101,20 @@
 	{% for i in recommendations %}
 
 	<!-- recommendation list  -->
-	<li data-value="{{i.preview_url}}" id='song'>
+	<li data-value="{{i.preview_url}}" data-name="{{i.name}}" data-artist="{{i.album.artists.0.name}}" id='song'>
 	
-		<div data-value="{{i.preview_url}}" class="track-info">
+		<div data-value="{{i.preview_url}}" data-name="{{i.name}}" data-artist="{{i.album.artists.0.name}}" class="track-info">
 			{% if not i.preview_url %}
 			<p class="preview_availability">Preview unavailable</p>
 		{% endif %}
-			<a data-value="{{i.preview_url}}">{{i.name}}</a>
+			<a data-value="{{i.preview_url}}" data-name="{{i.name}}" data-artist="{{i.album.artists.0.name}}">{{i.name}}</a>
 			<span class="artist">{{i.album.artists.0.name}}</span>
 			<!--<button onclick="delete_songs('{{ i }}')" ></button>-->
 			<!--<input type="checkbox" class="selected_songs" id="me" >-->
-			
+			<!--
 			<i class="fa fa-thumbs-o-up icons" onclick="toggleLike(this)" aria-hidden="true"></i>
 			<i class="fa fa-thumbs-o-down icons" onclick="toggleDislike(this)" aria-hidden="true"></i>
-			<i class="fa fa-trash icons" aria-hidden="true"></i>
+			<i class="fa fa-trash icons" aria-hidden="true"></i>-->
 		</div>
 	</li>
 
@@ -131,6 +134,6 @@
 </div>
 <!----------------Audio player-------------------->
 <div class="player">
-	<span> Now Playing: </span>
+	<span>Now Playing : </span><span id="nowplaying"> </span>
 	<audio class="mejs__player" id="audio" controls="controls" src=""></audio>
 </div>

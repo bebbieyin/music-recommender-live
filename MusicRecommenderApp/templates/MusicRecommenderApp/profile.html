@@ -12,7 +12,6 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/profile.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'MusicRecommenderApp/styles/mediaelementplayer.css' %}">
-<link rel="stylesheet prefetch" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
 </head>
     <body>
@@ -42,38 +41,56 @@
 
     <div class="recommendations_container">
 
-        <div class="section_row">
-            <div class="user_analysis">
-            <h3>Based on AI algorithms: your most favourite genre is: </h3>
-            <h4>You like song with <b>high</b> dancebility</h4>
-        </div>
-        </div>
-	<!-- Actions -->
-    <div class="row">
-        <div class="col">
-            <div class="actions-button">
-                <ul class="d-flex flex-row align-items-center justify-content-center flex-wrap">
-                    <button class='action_button btn btn-outline-light' type="button"  onclick="addSongs()" >Add to existing playlist</button>
-                    <!-- Button to Open the Modal -->
-                    <button class='action_button btn btn-outline-light' type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                    Create Playlist
-                      </button>
-                    <button class='action_button btn btn-outline-light'>Add to Favourites </button>
-                    <button class='action_button btn btn-outline-light'>Filter </button>
-                    <button class='action_button btn btn-outline-light'>Duration </button>
-                </ul>
+        <!--Choices -->
+        <div class ="select_row">
+            <form method="POST" id='myform'  >
+                {% csrf_token %}
+    
+                <select class="select-css" name="selected_category">
+                    <option disabled="true" value=''>Please select a category: </option>
+                    <option class='option' value='Saved Tracks'>Your Saved Tracks</option>
+                    <option class='option' value='Recent Plays'>Your Recent Plays</option>
+                    <option class='option' value='Top Tracks'>Your Top Tracks</option>
+                    {% for i in choices %}
+                            <option class='option'  name='option1' value={{i.id}}>{{i.name|title}}</option>
+                    {% endfor %}
+                </select>
+                <div class="search_btn_container">
+                <button type="submit" class="search_btn"><i class="fa fa-search"></i></button>
             </div>
+ 
+            </form>
         </div>
-    </div> <!--end row action-->
-        <div class="section_row">
+	
+   <!-- Actions -->
+   <div class="row ">
+    <div class="col">
+        <div class="actions-button" id="actions-button" >
+            <ul class="d-flex flex-row align-items-center justify-content-center flex-wrap">
+                <!-- Button to Open the Modal -->
+                <button class='action_button btn btn-dark' type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Create Playlist
+                  </button>
+                <button class='action_button btn btn-dark' type="button"  onclick="addSongs()" >Add to existing playlist</button>
+            <!--
+                  
+                <button class='action_button btn btn-outline-light'>Add to Favourites </button>
+                <button class='action_button btn btn-outline-light'>Filter </button>
+                <button class='action_button btn btn-outline-light'>Duration </button>
+            -->
+            </ul>
+        </div>
+    </div>
+</div> <!--end row action-->
 
-            <div class="recommendations_section" id="recomemendations_playlists">
-            <h3>Based on your recent tracks :</h3>
-            {% if recent_recommendations %}
+        <div class="section_row" >
+            <div class="recommendations_section" id="recomemendations_playlists" >
+            <h3>Recommendations based on {{playlist_name|title}} :</h3>
+            {% if recommendations %}
             <div class="player-wrapper">
             
                 <ul class="playlist custom-counter" id="list">
-                {% for i in recent_recommendations %}
+                {% for i in recommendations %}
             
                 <!-- recommendation list  -->
                 <li>
@@ -93,62 +110,8 @@
             </div> <!--end div recommenations-->
             </div>
 
-            <div class="section_row">
-            <div class="recommendations_section" id="recomemendations_savedtracks">
-                <h3>Based on your saved tracks :</h3>
-                {% if saved_recommendations %}
-            <div class="player-wrapper">
-            
-                <ul class="playlist custom-counter" id="list">
-                {% for i in saved_recommendations %}
-            
-                <!-- recommendation list  -->
-                <li>
-                    <iframe src="https://open.spotify.com/embed/track/{{i.id}}" 
-                    width="80%" height="80px" frameborder="0" allowtransparency="true" 
-                    allow="encrypted-media"></iframe>
-                </li>
-            
-                {% endfor %}
-            </ul>
-            
-            </div>
-            {% else %}
-            <h1>No results</h1>
-            {% endif %}
-                             </div> <!--end div recomemendations-->
-            </div><!--end div section_row -->
-    
-
-
-        <div class="section_row">
-            <div class="recommendations_section" id="recomemendations_recentplayed">
-                <h3>Based on your favourite tracks :</h3>
-                {% if top_recommendations %}
-                <div class="player-wrapper">
-                
-                    <ul class="playlist custom-counter" id="list">
-                    {% for i in top_recommendations %}
-                
-                    <!-- recommendation list  -->
-                    <li>
-                        <iframe src="https://open.spotify.com/embed/track/{{i.id}}" 
-                        width="80%" height="80px" frameborder="0" allowtransparency="true" 
-                        allow="encrypted-media"></iframe>
-                    </li>
-                
-                    {% endfor %}
-                </ul>
-                
-                </div>
-                {% else %}
-                <h1>No results</h1>
-                {% endif %}
-                {{data}}
-
-                </div> <!--end div recomemendations-->
-                </div> <!--div end column -->
     </div> <!--end div section_row-->
+
     </div> <!--end div recommendations_container-->
 
     
