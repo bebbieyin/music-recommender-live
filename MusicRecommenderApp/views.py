@@ -159,7 +159,7 @@ class profileView(View):
             if saved_tracks.empty == True:
                 recommendations=None
             else:
-                recommendations = als.compute_als(recent_tracks)
+                recommendations = als.compute_als(saved_tracks)
 
         elif option =='Recent Plays':
             playlist_name = option
@@ -338,7 +338,6 @@ class recommendationsGenreView(View):
             min_features = pickle.load(a)
         with open(os.path.join(settings.BASE_DIR, 'datasets/max_features.pkl'), 'rb') as b:
             max_features = pickle.load(b)
-        
         with open(os.path.join(settings.BASE_DIR, 'datasets/model.sav'), 'rb') as c:
             rfc = pickle.load(c)
 
@@ -348,7 +347,7 @@ class recommendationsGenreView(View):
         genre_max =genre_max[genre_max.index == genre_id]
 
         # get the recommended songs based on the genre's features
-        pool = sp.recommendations(seed_genres=genres,limit=80,
+        pool = sp.recommendations(seed_genres=genres,limit=60,
                                      min_acousticness=genre_min.iloc[0][2], max_acousticness =genre_max.iloc[0][2],
                                      min_danceability=genre_min.iloc[0][3], max_danceability =genre_max.iloc[0][3],
                                      min_energy=genre_min.iloc[0][4], max_energy =genre_max.iloc[0][4],

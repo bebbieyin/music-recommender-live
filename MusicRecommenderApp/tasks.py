@@ -29,11 +29,6 @@ SPOTIFY_CLIENT_SECRET = 'fdae390db3e14974bfd77b31b55d67c7'
 SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:8000/'
 SCOPE = 'user-library-read user-top-read playlist-modify-public playlist-read-private user-follow-read user-read-recently-played'
 
-def get_token(user_id):
-    token = util.prompt_for_user_token(user_id, SCOPE,client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET, redirect_uri=SPOTIFY_REDIRECT_URI)  
-    sp=spotipy.Spotify(auth= token,requests_timeout=None)
-    return sp
-
 def getTrackFeatures(id):
     meta = sp.track(id)
     features = sp.audio_features(id)
