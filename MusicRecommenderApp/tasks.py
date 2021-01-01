@@ -260,7 +260,7 @@ class CollaborativeFiltering():
         tracks = []
         playlist_items = sp.playlist_tracks(playlist_id)['items']
         random.shuffle(playlist_items)
-        playlist_tracks = playlist_items[:50] # get 50 random tracks from the playlist
+        playlist_tracks = playlist_items[:60] # get 50 random tracks from the playlist
         for i in playlist_tracks:
             if i['is_local'] == False and i['track']['type']=='track':
                 track = getTrackFeatures(i['track']['id'])
@@ -312,8 +312,10 @@ class CollaborativeFiltering():
         
             # loop over track ids 
         tracks = []
-        for i in range(len(top_track_id)):
-            track = getTrackFeatures(top_track_id[i])
+        random.shuffle(top_track_id)
+        top_tracks = top_track_id[:80]
+        for i in range(len(top_tracks)):
+            track = getTrackFeatures(top_tracks[i])
             tracks.append(track)
 
             # create dataset
@@ -372,9 +374,11 @@ class CollaborativeFiltering():
 
         # loop over track ids 
         tracks = []
-        for i in range(len(saved_tracks_id)):
+        random.shuffle(saved_tracks_id)
+        saved_tracks = saved_tracks_id[:60]
+        for i in range(len(saved_tracks)):
             #time.sleep(1.5)
-            track = getTrackFeatures(saved_tracks_id[i])
+            track = getTrackFeatures(saved_tracks[i])
             tracks.append(track)
 
         # create dataset

@@ -99,11 +99,6 @@ class profileView(View):
                                                 mode=j.mode,user_id=j.user_id)
            '''
             #UsersTracks.objects.all().delete()
-     
-            #als=ALS(user_id)
-            #recent_recommendations= als.compute_als(recent_tracks)
-            #saved_recommendations = als.compute_als(saved_tracks)
-            #top_recommendations = als.compute_als(top_tracks)
             
             #test1.name='meee'
             #test1.save()  
