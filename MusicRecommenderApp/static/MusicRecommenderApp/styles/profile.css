@@ -49,18 +49,18 @@ html,body{
 
 .recommendations_container{
   width: 100%;
-	align-items: center;
-	justify-content:center ;
+
 }
 
 .section_row{
-  margin: 60px;
+  margin: 40px;
   text-align: center;
-  width: auto;
+  width: 100%;
   color: #FFFFFF;
   background: rgb(0, 0, 0,0.6); 
   font-family: 'Times New Roman', Times, serif;
 } 
+
 
 .player-wrapper {
 	border-radius: 5px;
@@ -133,11 +133,7 @@ ul.playlist .download {
 }
 
 /******************** Choices bar *****************************/
-.select_row{
-	margin-left: 130px;
-	align-items: center;
-	justify-content: center;
-}
+
 /* class applies to select element itself, not a wrapper element */
 .select-css {
 	display: block;
@@ -243,7 +239,6 @@ form .search_btn:hover {
   }
   
 
-
 /**********************Responsive*******************/
 /************
 1. 1600px
@@ -326,7 +321,9 @@ form .search_btn:hover {
 
 @media only screen and (max-width: 959px)
 {
-	
+	ul.playlist li::before {
+		margin-right :10px;
+	}
 }
 
 /************
@@ -336,6 +333,7 @@ form .search_btn:hover {
 @media only screen and (max-width: 880px)
 {
 	
+
 }
 
 /************
@@ -356,6 +354,7 @@ form .search_btn:hover {
 	.home_title h1{
 		font-size: 30px;
 	}
+	
 }
 
 /************
@@ -364,6 +363,7 @@ form .search_btn:hover {
 
 @media only screen and (max-width: 575px)
 {
+	
 }
 
 
@@ -400,5 +400,5 @@ form .search_btn:hover {
 
 @media only screen and (max-width: 400px)
 {
-	
+
 }

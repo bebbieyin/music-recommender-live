@@ -37,13 +37,11 @@
                 </div>
             </div>
     </div><!--end div home_profile-->
-
-
     <div class="recommendations_container">
 
         <!--Choices -->
-        <div class ="select_row">
-            <form method="POST" id='myform'  >
+        <div class ="section_row">
+            <form method="POST" id="myform" >
                 {% csrf_token %}
     
                 <select class="select-css" name="selected_category">
@@ -58,37 +56,43 @@
                 <div class="search_btn_container">
                 <button type="submit" class="search_btn"><i class="fa fa-search"></i></button>
             </div>
- 
+
             </form>
         </div>
-	
-   <!-- Actions -->
-   <div class="row ">
-    <div class="col">
-        <div class="actions-button" id="actions-button" >
-            <ul class="d-flex flex-row align-items-center justify-content-center flex-wrap">
-                <!-- Button to Open the Modal -->
-                <button class='action_button btn btn-dark' type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                Create Playlist
-                  </button>
-                <button class='action_button btn btn-dark' type="button"  onclick="addSongs()" >Add to existing playlist</button>
-            <!--
-                  
-                <button class='action_button btn btn-outline-light'>Add to Favourites </button>
-                <button class='action_button btn btn-outline-light'>Filter </button>
-                <button class='action_button btn btn-outline-light'>Duration </button>
-            -->
-            </ul>
-        </div>
-    </div>
-</div> <!--end row action-->
 
+        {% if recommendations %}
+
+               <!-- Actions -->
+               <div class="row ">
+                <div class="col">
+                    <div class="actions-button" id="actions-button" >
+                        <ul class="d-flex flex-row align-items-center justify-content-center flex-wrap">
+                            <!-- Button to Open the Modal -->
+                            <button class='action_button btn btn-dark' type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Create Playlist
+                              </button>
+                            <button class='action_button btn btn-dark' type="button"  onclick="addSongs()" >Add to existing playlist</button>
+                        <!--
+                              
+                            <button class='action_button btn btn-outline-light'>Add to Favourites </button>
+                            <button class='action_button btn btn-outline-light'>Filter </button>
+                            <button class='action_button btn btn-outline-light'>Duration </button>
+                        -->
+                        </ul>
+                    </div>
+                </div>
+            </div> <!--end row action-->
+        {% endif %}
+        
+        {% if searched == True %}
+        <div class ="row">
         <div class="section_row" >
             <div class="recommendations_section" id="recomemendations_playlists" >
-            <h3>Recommendations based on {{playlist_name|title}} :</h3>
-            {% if recommendations %}
-            <div class="player-wrapper">
-            
+
+                <h3>Recommendations based on {{playlist_name|title}} :</h3>
+                {% if recommendations %}
+                <div class="player-wrapper">
+                
                 <ul class="playlist custom-counter" id="list">
                 {% for i in recommendations %}
             
@@ -105,13 +109,14 @@
             </div>
             {% else %}
             <h1>No results</h1>
+        </div>
+            {% endif %}
             {% endif %}
             
             </div> <!--end div recommenations-->
             </div>
-
-    </div> <!--end div section_row-->
-
+        </div>
+        </div>
     </div> <!--end div recommendations_container-->
 
     
@@ -133,6 +138,5 @@
 <script src="{% static 'MusicRecommenderApp/js/my.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <script src="{% static 'MusicRecommenderApp/js/mediaelement-and-player.min.js' %}"></script>   
-
     </body>
 </html>

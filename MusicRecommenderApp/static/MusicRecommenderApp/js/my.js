@@ -1,6 +1,6 @@
 
  
-// 1. RECOMMENDATIONS PAGE JS
+// RECOMMENDATIONS PAGE JS
 
 // play the songs in the mediaelementjs
      // Dynamic URL change
@@ -23,16 +23,8 @@ list.onclick = function(e) {
     }
   };
 
-// 2. CONTACT PAGE JS 
-// display message when contact form is submitted
-  $('#gform').submit(function(e){
-    e.preventDefault();
 
-    // do ajax now
-    alert("submitted"); 
-});
-
-// 3. SEARCH PAGES JS
+// SEARCH PAGES JS
 function checkform()
 {
   if (document.getElementById("myInput").value == "")
@@ -79,12 +71,14 @@ function toggleDislike(x) {
 }
 
 // PROFILE page - show hide recommendations
-/*
-  $('#myform').submit(function(){
-        $('#actions-button').show();   
-  });*/
+function showHide() {
+  var div = document.getElementById('actions-button');
+    div.style.display = 'block';
 
- /*
+}
+
+
+/*
         function changeSearchText(clicked_id){
 
             var search_type = clicked_id;

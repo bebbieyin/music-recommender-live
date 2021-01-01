@@ -274,11 +274,13 @@ class CollaborativeFiltering():
                                                            'song_length','popularity', 'acousticness', 'danceability', 'energy', 
                                                            'instrumentalness', 'key', 'liveness', 'loudness', 'speechiness', 
                                                            'tempo', 'time_signature','valence','mode'])
-        df_playlist = df_playlist.drop_duplicates(subset=['track_id'])
-        df_playlist['user_id'] = self.user_id
-        df_playlist.drop_duplicates(inplace=True)
-
-        return df_playlist
+        if df_playlist.empty == True:
+            return df_playlist
+        else:
+            df_playlist = df_playlist.drop_duplicates(subset=['track_id'])
+            df_playlist['user_id'] = self.user_id
+            df_playlist.drop_duplicates(inplace=True)
+            return df_playlist
 
     def get_topTracks(self):
 
@@ -324,11 +326,13 @@ class CollaborativeFiltering():
                                                            'song_length','popularity', 'acousticness', 'danceability', 'energy', 
                                                            'instrumentalness', 'key', 'liveness', 'loudness', 'speechiness', 
                                                            'tempo', 'time_signature','valence','mode'])
-        df_topTracks = df_topTracks.drop_duplicates(subset=['track_id'])
-        df_topTracks['user_id'] = self.user_id
-        df_topTracks.drop_duplicates(inplace=True)
-
-        return df_topTracks
+        if df_topTracks.empty == True:
+            return df_topTracks
+        else:
+            df_topTracks = df_topTracks.drop_duplicates(subset=['track_id'])
+            df_topTracks['user_id'] = self.user_id
+            df_topTracks.drop_duplicates(inplace=True)
+            return df_topTracks
 
     def get_recentPlays(self) :
         sp = self.token
@@ -351,12 +355,15 @@ class CollaborativeFiltering():
                                                             'song_length','popularity', 'acousticness', 'danceability', 'energy', 
                                                             'instrumentalness', 'key', 'liveness', 'loudness', 'speechiness', 
                                                             'tempo', 'time_signature','valence','mode'])
-        df_recentPlays = df_recentPlays.drop_duplicates(subset=['track_id'])
-        df_recentPlays['user_id'] = self.user_id
-        df_recentPlays.drop_duplicates(inplace=True)
-       
-        return df_recentPlays
-    
+
+        if df_recentPlays.empty == True:
+            return df_recentPlays
+        else:
+            df_recentPlays = df_recentPlays.drop_duplicates(subset=['track_id'])
+            df_recentPlays['user_id'] = self.user_id
+            df_recentPlays.drop_duplicates(inplace=True)
+            return df_recentPlays
+           
     def get_savedTracks(self):
         sp = self.token
         saved_tracks_id = []
@@ -380,12 +387,16 @@ class CollaborativeFiltering():
                                                             'song_length','popularity', 'acousticness', 'danceability', 'energy', 
                                                             'instrumentalness', 'key', 'liveness', 'loudness', 'speechiness', 
                                                             'tempo', 'time_signature','valence','mode'])
-        df_savedTracks = df_savedTracks.drop_duplicates(subset=['track_id'])
-        df_savedTracks['user_id'] = self.user_id
-        df_savedTracks.drop_duplicates(inplace=True)
+     
 
        
-        return df_savedTracks
+        if df_savedTracks.empty == True:
+            return df_savedTracks
+        else:
+            df_savedTracks = df_savedTracks.drop_duplicates(subset=['track_id'])
+            df_savedTracks['user_id'] = self.user_id
+            df_savedTracks.drop_duplicates(inplace=True)
+            return df_savedTracks
     
 class ALS():
     

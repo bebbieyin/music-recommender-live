@@ -139,11 +139,14 @@ class profileView(View):
         als=ALS(user_id)
 
         option = request.POST.get('selected_category','')
-        searched = True
+        if option:
+            searched = True
+        else:
+            searched = False
+
         if option =='Saved Tracks':
             playlist_name = option
             saved_tracks = cf.get_savedTracks()
-            recommendations= als.compute_als(saved_tracks)
              # add only the saved and top tracks to database because thats what we are sure that the user likes
             for i in saved_tracks.itertuples():
                 if not UsersTracks.objects.filter(user_id=user_id, track_id=i.track_id).exists():
@@ -153,15 +156,23 @@ class profileView(View):
                                                 instrumentalness=i.instrumentalness,key=i.key,liveness=i.liveness,loudness=i.loudness,
                                                 speechiness=i.speechiness,tempo=i.tempo,time_signature=i.time_signature,valence=i.valence,
                                                 mode=i.mode,user_id=i.user_id)
+            if saved_tracks.empty == True:
+                recommendations=None
+            else:
+                recommendations = als.compute_als(recent_tracks)
+
         elif option =='Recent Plays':
             playlist_name = option
             recent_tracks = cf.get_recentPlays()
-            recommendations= als.compute_als(recent_tracks)
+            if recent_tracks.empty == True:
+                recommendations=None
+
+            else:
+                recommendations = als.compute_als(recent_tracks)
 
         elif option =='Top Tracks':
             playlist_name = option
             top_tracks = cf.get_topTracks()
-            recommendations= als.compute_als(top_tracks)
             for j in top_tracks.itertuples():
                 if not UsersTracks.objects.filter(user_id=user_id, track_id=j.track_id).exists():
                     UsersTracks.objects.create(track_id=j.track_id,name=j.name,album=j.album,artist=j.artist,artist_id=j.artist_id,
@@ -170,19 +181,26 @@ class profileView(View):
                                                 instrumentalness=j.instrumentalness,key=j.key,liveness=j.liveness,loudness=j.loudness,
                                                 speechiness=j.speechiness,tempo=j.tempo,time_signature=j.time_signature,valence=j.valence,
                                                 mode=j.mode,user_id=j.user_id)
+            if top_tracks.empty == True:
+                recommendations=None
+            else:
+                recommendations = als.compute_als(top_tracks)
 
         elif ((option !='Top Tracks') and (option !='Saved Tracks') and (option !='Recent Plays')):
             playlist_name = sp.playlist(option)['name']
             playlist_tracks = cf.get_playlistTracks(option)
-            recommendations = als.compute_als(playlist_tracks)
-            
+            if playlist_tracks.empty == True:
+                recommendations=None
+            else:
+                recommendations = als.compute_als(playlist_tracks)
+        
+
         context = {
-                'user':user,
-                'choices' :choices,
-                'recommendations':recommendations,
-                'playlist_name':playlist_name,
-                'option' : option,
-                }         
+                    'user':user,
+                    'choices' :choices,
+                    'recommendations':recommendations,
+                    'playlist_name':playlist_name,
+                    'searched' : searched, }
 
         return render(request,'MusicRecommenderApp/profile.html',context)
 
