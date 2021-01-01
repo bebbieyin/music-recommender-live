@@ -265,7 +265,7 @@ class genrePageView(View):
 
     def get(self,request,*args,**kwargs):
 
-        genres = ['pop','hiphop','r&b','edm','jazz & chill','country']
+        genres = ['pop','hiphop','r&b','edm','jazz & chill','country','rock']
 
         return render(request,'MusicRecommenderApp/genre.html',{"genres":genres})
 
@@ -315,22 +315,32 @@ class recommendationsGenreView(View):
     
     def get(self,request):
 
-        # ATTN = CHG THIS AND THW NAME OF GENRE IN DATASET
         # get the selected genre 
         genre_id = request.GET['genre_id']
-        genres=[]
-        genres.append(genre_id)
 
-        # a random jazz song, DELETE THIS
-        song=[]
-        song_id = '21HsI1RpRHEjbUjmzHtIyj'
-        song.append(song_id)
+        if genre_id == 'pop':
+            genres = ['pop']
+        elif genre_id == 'hiphop':
+            genres = ['hip-hop']
+        elif genre_id == 'r&b':
+            genres = ['blues','soul','r-n-b']
+        elif genre_id == 'edm':
+            genres = ['edm', 'electro', 'electronic','club','dance']
+        elif genre_id == 'jazz & chill':
+            genres = ['jazz', 'chill']
+        elif genre_id =='country':
+            genres = ['country']
+        elif genre_id == 'rock':
+            genres = ['rock','rock-n-roll','rockabilly']
         
         # open the pickle files with min and max featurs of each genre
         with open(os.path.join(settings.BASE_DIR, 'datasets/min_features.pkl'), 'rb') as a:
             min_features = pickle.load(a)
         with open(os.path.join(settings.BASE_DIR, 'datasets/max_features.pkl'), 'rb') as b:
             max_features = pickle.load(b)
+        
+        with open(os.path.join(settings.BASE_DIR, 'datasets/model.sav'), 'rb') as c:
+            rfc = pickle.load(c)
 
         genre_min = pd.DataFrame(min_features)
         genre_min =genre_min[genre_min.index == genre_id]
@@ -338,7 +348,7 @@ class recommendationsGenreView(View):
         genre_max =genre_max[genre_max.index == genre_id]
 
         # get the recommended songs based on the genre's features
-        recommendations = sp.recommendations(seed_tracks=song,limit=100,
+        pool = sp.recommendations(seed_genres=genres,limit=80,
                                      min_acousticness=genre_min.iloc[0][2], max_acousticness =genre_max.iloc[0][2],
                                      min_danceability=genre_min.iloc[0][3], max_danceability =genre_max.iloc[0][3],
                                      min_energy=genre_min.iloc[0][4], max_energy =genre_max.iloc[0][4],
@@ -347,7 +357,22 @@ class recommendationsGenreView(View):
                                      min_loudness=genre_min.iloc[0][8], max_loudness=genre_max.iloc[0][8],
                                      min_speechiness=genre_min.iloc[0][9], max_speechiness=genre_max.iloc[0][9],
                                      min_tempo=genre_min.iloc[0][10], max_tempo=genre_max.iloc[0][10],
-                                     min_valence=genre_min.iloc[0][12], max_valence=genre_max.iloc[0][12])['tracks']
+                                     min_valence=genre_min.iloc[0][12], max_valence=genre_max.iloc[0][12])
+        rec = []
+        min_max_scaler = preprocessing.MinMaxScaler()
+        for i in pool['tracks']:
+            features = getTrackFeatures(i['id'])
+            rec.append(features)
+        dataframe  = pd.DataFrame(rec, columns = ['track_id','name', 'album', 'artist','artist_id','release_date', 'song_length', 
+                                        'popularity', 'acousticness', 'danceability','energy', 'instrumentalness', 'key', 
+                                          'liveness', 'loudness', 'speechiness', 'tempo', 'time_signature','valence', 'mode'])
+        cols = dataframe.drop(['track_id','name','artist','artist_id','release_date','album'],axis=1)
+        genre_feature = min_max_scaler.fit_transform(cols)
+        dtree_predictions = rfc.predict(genre_feature) 
+        dataframe['genre'] = dtree_predictions
+        selected = dataframe[dataframe['genre']==genre_id]
+        selected_list = selected.track_id.tolist()
+        recommendations = sp.tracks(selected_list)['tracks']
 
         request.session['recommendations_track'] = recommendations
 
@@ -369,9 +394,9 @@ class createPlaylistView(View):
             social = user.social_auth.get(provider='spotify')
 
             # refresh access token if it expires
-            #if (social.extra_data['auth_time'] + 3600 - 10) <= int(time.time()):
-                #strategy = load_strategy()
-                #social.refresh_token(strategy)
+            if (social.extra_data['auth_time'] + 3600 - 10) <= int(time.time()):
+                strategy = load_strategy()
+                social.refresh_token(strategy)
             
             # get the access token and set user's spotify object
             token=social.extra_data['access_token']

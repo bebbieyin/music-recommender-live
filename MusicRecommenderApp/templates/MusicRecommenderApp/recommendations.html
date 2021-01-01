@@ -13,8 +13,9 @@
 						<button class='action_button btn btn-outline-light' type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 						Create Playlist
 						  </button>
-						<button class='action_button btn btn-outline-light' type="button"  onclick="addSongs()" >Add to existing playlist</button>
-						<!--
+						  <!--
+						<button class='action_button btn btn-outline-light' type="button"  data-toggle="modal" data-target="#addplaylist_model" >Add to existing playlist</button>
+						
 						<button class='action_button btn btn-outline-light'>Add to Favourites </button>
 						<button class='action_button btn btn-outline-light'>Filter </button>
 						<button class='action_button btn btn-outline-light'>Duration </button>
@@ -134,6 +135,6 @@
 </div>
 <!----------------Audio player-------------------->
 <div class="player">
-	<span>Now Playing : </span><span id="nowplaying"> </span>
+	<span><b>Now Playing :</b> </span><span id="nowplaying"> </span>
 	<audio class="mejs__player" id="audio" controls="controls" src=""></audio>
 </div>
