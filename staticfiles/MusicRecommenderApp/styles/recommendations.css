@@ -1,0 +1,725 @@
+/* --------------------------------------------------- body -------------------------------------------- */
+html,body{
+	margin:0;
+	padding:0;
+	height:100%;
+}
+#bg {
+    position: fixed; 
+    top: -50%; 
+    left: -50%; 
+    width: 200%; 
+    height: 200%;
+  }
+  #bg img {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    margin: auto; 
+    min-width: 50%;
+    min-height: 50%;
+  }
+
+  .row{
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+}
+
+/*---------------------------------------------------- Home css ---------------------------------------*/
+
+.recommendation_home
+{
+	height: 100%;
+}
+.recommendation_home_container
+{
+	width: 100%;
+    height: 87%;
+    background: rgb(0, 0, 0,0.6); 
+}
+.home_title h1
+{
+    padding-top: 100px;
+    font-size: 40px;
+	color: #FFFFFF;
+    font-weight: 200;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+	text-align: center;
+}
+
+.details p {
+    color: white;
+    text-align: center;
+    font-size: 25px;    
+}
+.img{
+    opacity: 1;
+    width: 250px;
+    height: 250px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+/**************************** action buttons css************/
+.actions-button{
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+
+
+/********************************* Side bar css *********************************/
+
+.row{
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	flex-wrap :wrap;
+}
+.sidebar
+{
+    flex: 1;
+	background: rgb(0, 0, 0,0.6); 
+	color: white;
+	display:none;
+
+}
+.sidebar_title
+{
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.2;
+}
+.search_form
+{
+	display: block;
+	position: relative;
+	width: 100%;
+	margin-top: 22px;
+}
+.search_input
+{
+	width: 100%;
+	height: 32px;
+	padding-left: 18px;
+	background: #f7f7f7;
+	border: none;
+	outline: none;
+	border-radius: 16px;
+}
+.search_input::-webkit-input-placeholder
+{
+	font-size: 13px !important;
+	font-weight: 300 !important;
+	font-style: italic;
+	color: #2e3038 !important;
+}
+.search_input:-moz-placeholder
+{
+	font-size: 13px !important;
+	font-weight: 300 !important;
+	font-style: italic;
+	color: #2e3038 !important;
+}
+.search_input::-moz-placeholder
+{
+	font-size: 13px !important;
+	font-weight: 300 !important;
+	font-style: italic;
+	color: #2e3038 !important;
+} 
+.search_input:-ms-input-placeholder
+{ 
+	font-size: 13px !important;
+	font-weight: 300 !important;
+	font-style: italic;
+	color: #2e3038 !important;
+}
+.search_input::input-placeholder
+{
+	font-size: 13px !important;
+	font-weight: 300 !important;
+	font-style: italic;
+	color: #2e3038 !important;
+}
+.search_button
+{
+	position: absolute;
+	top: 0;
+	right: 5px;
+	width: 32px;
+	height: 32px;
+	background: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+.sidebar_list
+{
+	margin-top: 36px;
+}
+.sidebar_list ul
+{
+	margin-top: 19px;
+}
+.sidebar_list ul li:not(:last-of-type)
+{
+	margin-bottom: 3px;
+}
+.sidebar_list ul li a
+{
+	font-size: 16px;
+	font-weight: 500;
+	color: #5e5f62;
+}
+.sidebar_list ul li a:hover
+{
+	color: #ff3500;
+}
+.sidebar_tags
+{
+	margin-top: 38px;
+}
+.sidebar .tags
+{
+	position: relative;
+	top: auto;
+	left: auto;
+	margin-top: 24px;
+}
+.sidebar_archive
+{
+	margin-top: 30px;
+}
+.dropdown
+{
+	width: 100%;
+	background: #f7f7f7;
+	border-radius: 3px;
+	margin-top: 24px;
+}
+.dropdown_selected
+{
+	position: relative;
+	width: 100%;
+	height: 32px;
+	cursor: pointer;
+	padding-left: 10px;
+	padding-right: 15px;
+	font-size: 14px;
+	font-weight: 400;
+	color: #2e3038;
+}
+.dropdown_selected i
+{
+	font-size: 12px;
+	color: #2e3038;
+}
+.dropdown > ul > li > ul
+{
+	position: absolute;
+	right: 0;
+	top: 100%;
+	width: 100%;
+	padding-top: 15px;
+	background: #FFFFFF;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.dropdown > ul > li > ul li
+{
+	padding-left: 10px;
+	padding-right: 15px;
+	padding-bottom: 7px;
+}
+.dropdown > ul > li > ul li:not(:last-of-type)
+{
+	margin-bottom: 8px;
+	border-bottom: solid 1px rgba(0,0,0,0.05);
+}
+.dropdown > ul > li > ul li a
+{
+	display: block;
+	font-size: 14px;
+	font-weight: 400;
+	color: #2e3038;
+}
+.dropdown > ul > li > ul li a:hover
+{
+	color: #ff3500;
+}
+.dropdown_selected:hover > ul
+{
+	visibility: visible;
+	opacity: 1;
+}
+
+
+/* ------------------------------------- recommendations playlist css----------------------------------*/
+.recommendation_playlist{
+	width: 100%;
+}
+
+.player-wrapper {
+	border-radius: 5px;
+	box-shadow: 0 0 8px -1px rgba(0, 0, 0, 0.25);
+    background: rgb(0, 0, 0,0.6); 
+	color:white;
+	overflow: hidden;
+	margin: 0 auto;
+	max-width: 100%;
+	width: 100%;
+	height: fit-content;
+	padding: 0;
+	/*flex :1;*/
+	border-radius: 0;
+}
+ul.playlist {
+	margin: 0;
+	padding: 15px 15px 0 15px;
+}
+ul.playlist a {
+	color: #fff;
+	text-decoration: none;
+}
+ul.playlist li {
+	overflow: hidden;
+	line-height: 20px;
+	display: flex;
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(230, 211, 211, 0.31);
+}
+ul.playlist li::before {
+	content: "\f001";
+	margin-right: 10px;
+	font-size: 120%;
+	background-color: #02020266;
+	font-family: Fontawesome;
+	color: white;
+	padding: 6px 8px;
+	text-align: center;
+	border-radius: 3px;
+}
+.track-info {
+	display: inline-block;
+	position: relative;
+	line-height: 1.3em;
+	width: 100%;
+	font-weight: 500;
+}
+.track-info .artist {
+	display: block;
+	font-size: 13px;
+	font-style: normal;
+	line-height: 15px;
+	color: #fff;
+	text-decoration: none;
+}
+.track-info .title {
+	display: block;
+	color: #fff;
+}
+ul.playlist .download {
+	float: right;
+}
+.preview_availability{
+	float: right;
+	
+	}
+.icons{
+	float: right;
+	padding:5px;
+	}
+/*---------------------------------------------Audio Player css -----------------------------*/
+.player-wrapper {
+	border-radius: 5px;
+	box-shadow: 0 0 8px -1px rgba(0, 0, 0, 0.25);
+	background: rgb(0, 0, 0,0.6); 
+	overflow: hidden;
+	margin: 0 auto;
+	max-width: 100%;
+	width: 100%;
+	padding: 0;
+	border-radius: 0;
+}
+ul.playlist {
+	margin: 0;
+	padding: 15px 15px 0 15px;
+}
+ul.playlist a {
+	color: #fff;
+	text-decoration: none;
+}
+ul.playlist li {
+	overflow: hidden;
+	line-height: 20px;
+	display: flex;
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(230, 211, 211, 0.31);
+}
+ul.playlist li::before {
+	content: "\f001";
+	margin-right: 10px;
+	font-size: 120%;
+	background-color: #02020266;
+	font-family: Fontawesome;
+	color: white;
+	padding: 6px 8px;
+	text-align: center;
+	border-radius: 3px;
+}
+.track-info {
+	display: inline-block;
+	position: relative;
+	line-height: 1.3em;
+	width: 100%;
+	font-weight: 500;
+}
+.track-info .artist {
+	display: block;
+	font-size: 13px;
+	font-style: normal;
+	line-height: 15px;
+	color: #fff;
+	text-decoration: none;
+}
+.track-info .title {
+	display: block;
+	color: #fff;
+}
+ul.playlist .download {
+	float: right;
+}
+.mejs__controls {
+	height: 60px;
+}
+.mejs__button.mejs__playpause-button.mejs__replay,
+.mejs__button.mejs__playpause-button.mejs__pause {
+	background: transparent;
+	width: 40px;
+	padding: 0 5px;
+	border-radius: 50%;
+}
+.mejs__button.mejs__playpause-button.mejs__replay {
+	background:transparent;
+}
+.mejs__button.mejs__playpause-button.mejs__play {
+	background:transparent;
+	width: 40px;
+	padding: 0 5px;
+	border-radius: 50%;
+}
+.mejs__time {
+	box-sizing: content-box;
+	color: #444;
+	font-size: 15px;
+	font-weight: bold;
+	height: 24px;
+	overflow: hidden;
+	width: 50px;
+	padding: 16px 0;
+}
+.mejs__button > button {
+	display: block;
+	padding: 0;
+	border: 0;
+	font-family: FontAwesome;
+	font-size: 20px;
+	color: #444;
+}
+
+.mejs__button.mejs__playpause-button.mejs__pause button:before {
+	content: "\f04c";
+	color: #fff;
+}
+.mejs__button.mejs__playpause-button.mejs__replay button:before {
+	content: "\f01e";
+	color: #fff;
+}
+.mejs__button.mejs__volume-button.mejs__mute button:before {
+	content: "\f028";
+	color: #fff;
+
+}
+.mejs__button.mejs__volume-button.mejs__unmute button:before {
+	content: "\f026";
+	color: #fff;
+
+}
+.mejs__container {
+	font-family: Segui Ui, Arial, serif;
+	background-size: cover;
+	position: relative;
+	background: #fff;
+	text-align: left;
+	text-indent: 0;
+	vertical-align: top;
+	height: 80px!important;
+	width: 100%!important;
+}
+.mejs__controls:not([style*="display: none"]) {
+	background: none;
+}
+.mejs__time-total {
+	background: rgb(212, 245, 221);
+	margin: 5px 0 0;
+	width: 100%;
+}
+span.mejs__time-current {
+	background: #dedede;
+}
+span.mejs__time-loaded {
+	background: white;
+}
+.mejs__time-handle-content {
+	border: 4px solid rgba(255, 255, 255, 0.9);
+	border-radius: 0;
+	height: 10px;
+	left: -5px;
+	top: -4px;
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	width: 1px;
+}
+.mejs__horizontal-volume-total {
+	height: 10px;
+	top: 14px;
+	border-radius: 0;
+}
+
+
+.player{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	height: 70px;
+	background: rgb(0, 0, 0,0.6); 
+	text-align: center;
+	color: white;
+	z-index: 10000000;
+}
+
+
+/* Create Playlist Modal css*/
+.playlist_name{
+	width: 100%;
+}
+
+/* ------------------------------Artist Recommendations Page ------------------------------------*/
+
+.similar_artists{
+	color:white;
+	text-align: center;
+	width: 100%;
+	margin: 10px;
+	padding:20px;
+	margin-top: 0px;
+}
+
+.similar_artists_container{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+.similar_artist_item{
+	border:white 1px solid;
+	padding: 20px;
+	margin: 10px;
+}
+.similar_artist_img{
+	width: 200px;
+	height: 200px; 
+}
+
+/************************Genre recommendation page*************/
+
+.genre_name{
+
+	font-family: 'Poppins', sans-serif;
+    font-size: 45px;
+	color: #FFFFFF;
+	font-weight: 200;
+	margin-top: 0px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+	opacity: 1;
+	text-align: center;
+}
+
+.filler{
+height:80px;
+}
+
+/*******************Responsive ****************/
+
+
+/************
+1. 1600px
+************/
+
+@media only screen and (max-width: 1600px)
+{
+	
+}
+
+/************
+2. 1440px
+************/
+
+@media only screen and (max-width: 1440px)
+{
+	
+}
+
+/************
+3. 1380px
+************/
+
+@media only screen and (max-width: 1380px)
+{
+	
+}
+
+/************
+3. 1280px
+************/
+
+@media only screen and (max-width: 1280px)
+{
+	
+}
+
+/************
+4. 1199px
+************/
+
+@media only screen and (max-width: 1199px)
+{
+	
+}
+
+/************
+4. 1100px
+************/
+
+@media only screen and (max-width: 1100px)
+{
+	
+
+}
+
+
+/************
+5. 1024px
+************/
+
+@media only screen and (max-width: 1024px)
+{
+	
+}
+
+/************
+6. 991px
+************/
+
+@media only screen and (max-width: 991px)
+{
+	.recommendations_row{
+		flex-direction: column;
+	}
+}
+
+/************
+7. 959px
+************/
+
+@media only screen and (max-width: 959px)
+{
+	
+}
+
+/************
+8. 880px
+************/
+
+@media only screen and (max-width: 880px)
+{
+	
+}
+
+/************
+9. 768px
+************/
+
+@media only screen and (max-width: 768px)
+{
+	
+}
+
+/************
+10. 767px
+************/
+
+@media only screen and (max-width: 767px)
+{
+
+}
+
+/************
+11. 575px
+************/
+
+@media only screen and (max-width: 575px)
+{
+	
+}
+
+/************
+11. 539px
+************/
+
+@media only screen and (max-width: 539px)
+{
+	
+}
+
+/************
+12. 480px
+************/
+
+@media only screen and (max-width: 480px)
+{
+	
+}
+
+/************
+13. 479px
+************/
+
+@media only screen and (max-width: 479px)
+{
+	
+}
+/************
+14. 400px
+************/
+
+@media only screen and (max-width: 400px)
+{
+	
+}

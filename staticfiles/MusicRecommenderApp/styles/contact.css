@@ -1,0 +1,196 @@
+
+.super_container{
+	width: 100%;
+	height: 100%;
+	background: #151515;
+
+}
+.contact
+{
+	color: white;
+	padding-top: 30px;
+	padding-bottom: 120px;
+}
+
+.contact_title{
+	margin-top: 50px;
+	margin-bottom: 20px;
+	height: 100px;
+	text-align: center;
+	font-family: "Playfair Display";
+	font-size: 50px;
+	background-image: url("../images/bg_dark2.jpg") ;
+}
+
+.contact_title h2{
+	padding-top: 30px;
+}
+
+/*****************Intro text********************************/
+.intro_text
+{
+	margin: 50px;
+	font-family: "Playfair Display";
+}
+
+
+/***********************Contact form ******************************/
+.contact_form_container
+{
+	margin-top: 50px;
+	padding:15px;
+}
+.contact_form_title
+{
+	font-size: 24px;
+	font-weight: 500;
+	font-family: "Playfair Display";
+
+}
+.gform
+{
+	margin-top: 40px;
+}
+.gform > div:not(:last-of-type)
+{
+	margin-bottom: 34px;
+}
+
+.thankyou_message{
+	font-family: 'Times New Roman', Times, serif;
+	margin-top: 30px;
+	text-align: center;
+}
+.contact_input
+{
+	width: 100%;
+	height: 44px;
+	background: #f7f7f7;
+	border: none;
+	border-bottom: solid 3px #9c9d9e;
+	outline: none;
+	padding-left: 17px;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.contact_input:hover,
+.contact_input:focus
+{
+	border-bottom: solid 3px #FBC403;
+}
+.contact_textarea
+{
+	height: 149px;
+	padding-top: 17px;
+}
+.contact_input::-webkit-input-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #9e9e9e !important;
+}
+.contact_input:-moz-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #9e9e9e !important;
+}
+.contact_input::-moz-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #9e9e9e !important;
+} 
+.contact_input:-ms-input-placeholder
+{ 
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #9e9e9e !important;
+}
+.contact_input::input-placeholder
+{
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	font-style: italic;
+	color: #9e9e9e !important;
+}
+.contact_button
+{
+	display: block;
+	width: 161px;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	font-weight: 500;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	cursor: pointer;
+	margin-top: 28px;
+	background-color:#FF0000
+	;
+}
+
+/*********************************** Social media buttons *****************/
+.social_row
+{
+	margin-top: 50px;
+}
+.social ul li
+{
+	width: 45px;
+	height: 45px;
+	border: solid 1px #FFFFFF;
+	box-shadow: 0 0 1px 0px #FFFFFF inset, 0 0 1px 0px #FFFFFF;
+	border-radius: 50%;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.social ul li:not(:last-of-type)
+{
+	margin-right: 7px;
+}
+.social ul li a
+{
+	display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.social ul li a i
+{
+	font-size: 25px;
+	color: #FFFFFF;
+	line-height: 43px;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.social ul li:hover
+{
+	border-color: #FF0000;
+	box-shadow: 0 0 1px 0px #FF0000 inset, 0 0 1px 0px #FF0000;
+}
+.social ul li:hover a i
+{
+	color: #FF0000;
+}
+
+.portfoilo_link p{
+	color: whitesmoke;
+	text-align: center;
+}
+
+
+
