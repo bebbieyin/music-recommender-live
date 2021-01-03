@@ -24,9 +24,11 @@ html,body{
 .about_title h2{
 	padding-top: 30px;
 }
-.about_image{
+
+.about_image .img{
 	width:600px;
-	height:250px;
+	height:100px;
+	margin-bottom: 35px;
 }
 .post_title
 {

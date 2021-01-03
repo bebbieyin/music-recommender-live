@@ -3,8 +3,8 @@ html,body{
 	margin:0;
 	padding:0;
 	height:100%;
-	background-image: url(../images/bg_moon.jpg);
-	background-repeat: repeat;
+	background-image: url(../images/bg.png);
+	background-repeat: repeat-y;
 }
 
 
@@ -32,14 +32,16 @@ html,body{
     text-transform: uppercase;
     font-family: 'Poppins', sans-serif;
     opacity: 1;
-	text-shadow: 5px 7px 5px yellow;
+	text-shadow: 5px 7px 5px rgb(247, 247, 244);
 }
  h6{
-	text-shadow: 0 0 7px black, 0 0 7px black, 0 0 7px black, 0 0 7px black;
+	text-shadow: 0 0 7px rgb(131, 131, 131), 0 0 7px rgb(141, 141, 141), 0 0 7px rgb(184, 184, 184), 0 0 7px black;
 	color: azure;
 	text-align: center;
 }
-
+span{
+	color:gray;
+}
 /************** actions button *******************/
 .actions-button{
 	margin-top: 30px;
@@ -127,7 +129,7 @@ ul.playlist .download {
     text-transform: uppercase;
     font-family: 'Poppins', sans-serif;
     opacity: 1;
-	text-shadow: 5px 7px 5px yellow;
+	text-shadow: 5px 7px 5px rgb(184, 184, 184);
 	text-align: center;	
 	
 }
@@ -157,7 +159,7 @@ ul.playlist .download {
 		
 	*/
 	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-	  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+	  linear-gradient(to bottom, rgb(155, 137, 189) 0%,#a8a8a8 100%);
 	background-repeat: no-repeat, repeat;
 	/* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
 	background-position: right .7em top 50%, 0 0;
@@ -206,7 +208,7 @@ ul.playlist .download {
 .select-css {
 	float: left;
 	margin-top: 20px;
-	width: 75%;
+	width: 90%;
 	height: 3em;
 	text-align: center;
     text-align-last: center;
@@ -221,7 +223,7 @@ ul.playlist .download {
 	height: 2.9em;
 	align-items: center;
 	margin-top: 20px;
-	width:20%;
+	width:5%;
 	float: left;
 	padding: 10px;
 	background: black;
@@ -342,7 +344,16 @@ form .search_btn:hover {
 
 @media only screen and (max-width: 768px)
 {
-	
+	.search_btn{
+		width: 25%;
+	}
+	.search_btn_container{
+		width: 100%;
+	}
+	.select-css{
+		width: 70%;
+		margin-left: -30px;
+	}
 }
 
 /************
