@@ -189,7 +189,7 @@ class profileView(View):
             else:
                 recommendations = als.compute_als(playlist_tracks)
         
-
+        request.session['recommendations_track'] = recommendations
         context = {
                     'user':user,
                     'choices' :choices,
